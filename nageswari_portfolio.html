@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Nageswari Aaneti, Python Full Stack Developer.">
+  <title>Nageswari Aaneti | Python Full Stack Developer</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121a2e;
+      --panel-soft: #17223b;
+      --text: #edf2ff;
+      --muted: #aab6d3;
+      --accent: #8b9cff;
+      --accent-2: #63dfc2;
+      --line: rgba(255, 255, 255, .11);
+      --shadow: 0 18px 50px rgba(0, 0, 0, .25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background: radial-gradient(circle at 85% 5%, #1a2850 0, transparent 28%), var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11, 16, 32, .88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      letter-spacing: .3px;
+    }
+
+    .logo span {
+      color: var(--accent-2);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .94rem;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-2);
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 7px 11px;
+      font-size: 1.1rem;
+    }
+
+    .hero {
+      min-height: 590px;
+      display: grid;
+      grid-template-columns: 1.35fr .85fr;
+      align-items: center;
+      gap: 55px;
+      padding: 85px 0;
+    }
+
+    .eyebrow {
+      color: var(--accent-2);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+
+    h1 {
+      font-size: clamp(2.7rem, 6vw, 4.8rem);
+      line-height: 1.08;
+      margin: 17px 0;
+      letter-spacing: -2px;
+    }
+
+    h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 620px;
+      font-size: 1.08rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 19px;
+      border-radius: 9px;
+      font-weight: 700;
+      border: 1px solid var(--accent);
+      transition: transform .2s, background .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: #10162a;
+    }
+
+    .btn.secondary {
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .hero-card {
+      background: linear-gradient(145deg, #1b2a4b, #111a2e);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .avatar {
+      width: 115px;
+      height: 115px;
+      border-radius: 28px;
+      overflow: hidden;
+      margin-bottom: 25px;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-card h2 {
+      font-size: 1.35rem;
+      margin-bottom: 7px;
+    }
+
+    .hero-card p {
+      font-size: .95rem;
+    }
+
+    .quick-info {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .quick-info div {
+      padding: 13px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .05);
+    }
+
+    .quick-info strong {
+      display: block;
+      color: var(--accent-2);
+      font-size: 1.1rem;
+    }
+
+    .quick-info small {
+      color: var(--muted);
+    }
+
+    section {
+      padding: 78px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 32px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      margin-top: 7px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 7px;
+    }
+
+    .about-box,
+    .contact-box {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 28px;
+    }
+
+    .about-box p {
+      color: var(--muted);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .skill {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      padding: 17px;
+      font-weight: 650;
+      text-align: center;
+    }
+
+    .skill span {
+      display: block;
+      color: var(--accent-2);
+      font-size: .75rem;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .project {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 17px;
+      padding: 24px;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent);
+    }
+
+    .project .number {
+      color: var(--accent-2);
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .project h3 {
+      font-size: 1.2rem;
+      margin: 8px 0;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 17px;
+    }
+
+    .tags span {
+      background: var(--panel-soft);
+      color: #cbd5f2;
+      padding: 5px 9px;
+      border-radius: 20px;
+      font-size: .76rem;
+    }
+
+    .timeline {
+      border-left: 2px solid var(--accent);
+      padding-left: 23px;
+      margin-left: 8px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 25px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -31px;
+      top: 7px;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 5px var(--bg);
+    }
+
+    .timeline-item h3 {
+      font-size: 1.1rem;
+    }
+
+    .timeline-item p,
+    .timeline-item small {
+      color: var(--muted);
+    }
+
+    .contact-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 25px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: .88rem;
+    }
+
+    @media (max-width: 760px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        padding: 20px 5%;
+        background: #10182b;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 65px 0;
+      }
+
+      .hero-card {
+        max-width: 480px;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 58px 0;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+
+      .skill {
+        padding: 13px 8px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container">
+      <a class="logo" href="#home">Nageswari Portfolio<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="container hero" id="home">
+      <div>
+        <div class="eyebrow">Hello, welcome to my portfolio</div>
+        <h1>I'm Nageswari<br><span>Python Full Stack Developer</span></h1>
+        <p>A passionate developer interested in building responsive web applications and practical solutions using
+          Python, Django, databases, and modern frontend technologies.</p>
+        <div class="actions">
+          <a class="btn primary" href="#projects">View My Projects</a>
+          <a class="btn secondary" href="#contact">Get In Touch</a>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <div class="avatar"><img src="PicNag.jpeg" alt="Nageswari Aaneti"></div>
+        <h2>Nageswari Aaneti</h2>
+        <p>Python Full Stack Developer</p>
+        <div class="quick-info">
+          <div><strong>Python</strong><small>Backend</small></div>
+          <div><strong>Django</strong><small>Web Framework</small></div>
+          <div><strong>SQL</strong><small>Database</small></div>
+          <div><strong>HTML/CSS</strong><small>Frontend</small></div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="container" id="about">
+      <div class="section-heading">
+        <div class="eyebrow">A little about me</div>
+        <h2>About Me</h2>
+      </div>
+      <div class="about-box">
+        <p>I am an aspiring Python Full Stack Developer with hands-on training and project experience in Python, Django,
+          SQLite, SQL, HTML, CSS, JavaScript, and Bootstrap. I enjoy developing user-friendly web applications,
+          implementing CRUD operations, connecting databases, and creating responsive interfaces. I am eager to learn
+          new technologies and contribute to real-world software development projects.</p>
+      </div>
+    </section>
+
+    <section class="container" id="skills">
+      <div class="section-heading">
+        <div class="eyebrow">What I work with</div>
+        <h2>Technical Skills</h2>
+        <p>Technologies and tools used in my learning and projects.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill">Python<span>Programming</span></div>
+        <div class="skill">Django<span>Backend Framework</span></div>
+        <div class="skill">HTML5<span>Frontend</span></div>
+        <div class="skill">CSS3<span>Styling</span></div>
+        <div class="skill">JavaScript<span>Interactivity</span></div>
+        <div class="skill">SQL<span>Database</span></div>
+        <div class="skill">SQLite<span>Database</span></div>
+        <div class="skill">Bootstrap<span>Responsive UI</span></div>
+        <div class="skill">Git & GitHub<span>Version Control</span></div>
+        <div class="skill">CRUD<span>Application Operations</span></div>
+        <div class="skill">Pandas & NumPy<span>Data Analysis</span></div>
+        <div class="skill">REST APIs<span>Web Services</span></div>
+        <div class="skill">Power BI<span>Data Visualization</span></div>
+        <div class="skill">Excel<span>Data Analysis</span></div>
+      </div>
+    </section>
+
+    <section class="container" id="projects">
+      <div class="section-heading">
+        <div class="eyebrow">What I've built</div>
+        <h2>My Projects</h2>
+        <p>A selection of academic and development projects.</p>
+      </div>
+      <div class="projects-grid">
+        <article class="project">
+          <div class="number">PROJECT 01</div>
+          <h3>Student Management System</h3>
+          <p>Built a web application to manage student information and academic records, with CRUD functionality,
+            database storage, authentication, and role-based access.</p>
+          <div class="tags"><span>Python</span><span>Django</span><span>SQLite</span><span>Bootstrap</span></div>
+        </article>
+        <article class="project">
+          <div class="number">PROJECT 02</div>
+          <h3>IoT-Based Automatic Vehicle Accident Detection and Rescue System</h3>
+          <p>Developed an IoT-based system to detect vehicle accidents using accelerometer sensors and automatically
+            send real-time accident location details to a mobile application using GPS and GSM modules, helping to
+            provide quick emergency assistance.</p>
+          <div class="tags"><span>Arduino UNO</span><span>IoT</span><span>GPS</span><span>GSM</span><span>Accelerometer
+              Sensors</span></div>
+        </article>
+
+        <article class="project">
+          <div class="number">PROJECT 03</div>
+          <h3>Task Management System</h3>
+          <p>Created a web-based task management application with functionality to create, view, update, and delete task
+            records.</p>
+          <div class="tags"><span>Python</span><span>Django</span><span>MySQL</span><span>Bootstrap</span></div>
+        </article>
+        <article class="project">
+          <div class="number">PROJECT 04</div>
+          <h3>Railway Management System</h3>
+          <p>Designed a database-focused project to organize railway-related information and perform structured data
+            operations.</p>
+          <div class="tags"><span>SQL</span><span>MySQL</span><span>Database Design</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="experience">
+      <div class="section-heading">
+        <div class="eyebrow">My journey</div>
+        <h2>Training & Experience</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>Python Development Intern – Zapuza</h3>
+          <p>Python Development</p><small>July 2026 – Present</small>
+        </div>
+        <div class="timeline-item">
+          <h3>Python Full Stack Development Training – PySpiders</h3>
+          <p>Python, Django, HTML, CSS, JavaScript, SQL, and CRUD operations.</p><small>May 2025 – March 2026 ·
+            Bangalore</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="contact">
+      <div class="section-heading">
+        <div class="eyebrow">Let's connect</div>
+        <h2>Contact Me</h2>
+        <p>Interested in working together? Feel free to get in touch.</p>
+      </div>
+      <div class="contact-box">
+        <div>
+          <h3>Nageswari Aaneti</h3>
+          <p>anetinageswari@gmail.com | +91 7989415420</p>
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="https://www.linkedin.com/in/nageswari-aaneti-a64639266/" target="_blank"
+            rel="noopener noreferrer">LinkedIn Profile</a>
+          <a class="btn secondary" href="mailto:anetinageswari@gmail.com">Email Me</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">© <span id="year"></span> Nageswari Aaneti. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    menuBtn.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>
